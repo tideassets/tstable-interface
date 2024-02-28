@@ -1,14 +1,6 @@
 import type BigNumber from 'bignumber.js'
 import type { SupportedLambdaProtocols } from 'helpers/triggers/common'
 
-export enum AutoBuyTriggerCustomErrorCodes {}
-
-export enum AutoBuyTriggerCustomWarningCodes {}
-
-export enum AutoSellTriggerCustomErrorCodes {}
-
-export enum AutoSellTriggerCustomWarningCodes {}
-
 export enum TriggersApiErrorCode {
   MinSellPriceIsNotSet = 'min-sell-price-is-not-set',
   MaxBuyPriceIsNotSet = 'max-buy-price-is-not-set',
@@ -76,6 +68,11 @@ export enum TriggerAction {
   Update = 'update',
 }
 
+export type TriggerTransaction = {
+  data: string
+  to: string
+}
+
 export interface SetupAaveBasicAutomationParams {
   price: BigNumber | undefined
   executionLTV: BigNumber
@@ -84,7 +81,6 @@ export interface SetupAaveBasicAutomationParams {
   usePrice: boolean
   dpm: string
   strategy: StrategyLike
-  triggerType: number
   networkId: number
   protocol: SupportedLambdaProtocols
   action: TriggerAction
@@ -102,11 +98,7 @@ export type SetupBasicAutoResponse = {
     targetLTVWithDeviation: [string, string]
     targetMultiple: string
   }
-  transaction?: {
-    data: string
-    to: string
-    triggerTxData?: string
-  }
+  transaction?: TriggerTransaction
 }
 
 export type SetupBasicStopLossResponse = {
@@ -121,11 +113,7 @@ export type SetupBasicStopLossResponse = {
     targetLTVWithDeviation: [string, string]
     targetMultiple: string
   }
-  transaction?: {
-    data: string
-    to: string
-    triggerTxData?: string
-  }
+  transaction?: TriggerTransaction
 }
 
 export interface SetupAaveStopLossParams {
@@ -139,8 +127,26 @@ export interface SetupAaveStopLossParams {
   action: TriggerAction
 }
 
+export interface SetupAaveTrailingStopLossParams {
+  dpm: string
+  executionToken: string
+  trailingDistance: BigNumber
+  networkId: number
+  strategy: StrategyLike
+  protocol: SupportedLambdaProtocols
+  action: TriggerAction
+}
+
+export type SetupTrailingStopLossResponse = {
+  errors?: TriggersApiError[]
+  warnings?: TriggersApiWarning[]
+  encodedTriggerData?: string
+  simulation?: unknown
+  transaction?: TriggerTransaction
+}
+
 export type SetupBasicAutoResponseWithRequiredTransaction = SetupBasicAutoResponse & {
-  transaction: { data: string; to: string }
+  transaction: TriggerTransaction
 }
 
 export const hasTransaction = (

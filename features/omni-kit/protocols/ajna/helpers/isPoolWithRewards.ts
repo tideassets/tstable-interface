@@ -24,13 +24,18 @@ const poolsWithRewardsEthereum = [
   'WSTETH-USDC',
   'YFI-DAI',
   'MKR-DAI',
+  'SUSDE-DAI',
 ]
 const poolsWithRewardsBase = ['CBETH-ETH', 'ETH-USDC', 'WSTETH-ETH']
+const poolsWithRewardsArbitrum: string[] = []
+const poolsWithRewardsOptimism: string[] = []
 
 const poolsWithRewards: NetworkIdsWithValues<string[]> = {
   [NetworkIds.MAINNET]: poolsWithRewardsEthereum,
   [NetworkIds.GOERLI]: poolsWithRewardsEthereum,
   [NetworkIds.BASEMAINNET]: poolsWithRewardsBase,
+  [NetworkIds.OPTIMISMMAINNET]: poolsWithRewardsOptimism,
+  [NetworkIds.ARBITRUMMAINNET]: poolsWithRewardsArbitrum,
 }
 
 export function isPoolWithRewards({
