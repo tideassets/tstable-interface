@@ -4,6 +4,7 @@ import { getContractNetworkByWalletNetwork, NetworkIds, networkSetById } from 'b
 import type { ContractDesc } from 'features/web3Context'
 
 import { arbitrumContracts } from './arbitrum'
+import { arbitrumContracts } from './arbitrum'
 import { baseContracts } from './base'
 import { goerliContracts } from './goerli'
 import { mainnetContracts } from './mainnet'

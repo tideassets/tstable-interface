@@ -53,6 +53,7 @@ export async function handleGetProductHubData(
       })
     })
     .catch((error) => {
+      console.log('Error getting product hub data', error)
       return res.status(500).json({
         errorMessage: 'Error getting product hub data',
         error: error.toString(),

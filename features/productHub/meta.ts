@@ -203,6 +203,11 @@ export const productHubTestNetworkFilter: GenericMultiselectOption[] = [
   },
   {
     label: networksByName[BaseNetworkNames.Arbitrum].label,
+    value: networksByName[NetworkNames.arbitrumSepolia].name,
+    image: networksByName[NetworkNames.arbitrumSepolia].icon,
+  },
+  {
+    label: networksByName[BaseNetworkNames.Arbitrum].label,
     value: networksByName[NetworkNames.arbitrumGoerli].name,
     image: networksByName[NetworkNames.arbitrumGoerli].icon,
   },

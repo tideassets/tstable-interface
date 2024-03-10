@@ -13,6 +13,8 @@ export function getRpcNode(network: NetworkNames): string | undefined {
         : `https://arbitrum-mainnet.infura.io/v3/${process.env.INFURA_PROJECT_ID}`
     case NetworkNames.arbitrumGoerli:
       return `https://arbitrum-goerli.infura.io/v3/${process.env.INFURA_PROJECT_ID}`
+    case NetworkNames.arbitrumSepolia:
+      return `https://arbitrum-sepolia.infura.io/v3/${process.env.INFURA_PROJECT_ID}`
     case NetworkNames.polygonMainnet:
       return `https://polygon-mainnet.infura.io/v3/${process.env.INFURA_PROJECT_ID}`
     case NetworkNames.polygonMumbai:

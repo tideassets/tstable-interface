@@ -14,11 +14,12 @@ export function getRpcProvider(networkId: NetworkIds): ethers.providers.Provider
     throw new Error(`Network with id ${networkId} does not exist`)
   }
 
-  if (typeof window === 'undefined') {
-    return getBackendRpcProvider(networkId)
-  }
+  // if (typeof window === 'undefined') {
+  //   return getBackendRpcProvider(networkId)
+  // }
 
   const provider = network.getReadProvider()
+  // console.log('provider', provider)
 
   if (provider) {
     return provider

@@ -21,6 +21,7 @@ export type ProductHubSupportedNetworks =
   | NetworkNames.ethereumGoerli
   | NetworkNames.arbitrumMainnet
   | NetworkNames.arbitrumGoerli
+  | NetworkNames.arbitrumSepolia
   | NetworkNames.optimismMainnet
   | NetworkNames.optimismGoerli
   | NetworkNames.baseMainnet

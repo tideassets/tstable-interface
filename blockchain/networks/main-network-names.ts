@@ -7,6 +7,7 @@ export enum MainNetworkNames {
 
   arbitrumMainnet = NetworkNames.arbitrumMainnet,
   arbitrumGoerli = NetworkNames.arbitrumMainnet,
+  arbitrumSepolia = NetworkNames.arbitrumMainnet,
 
   polygonMainnet = NetworkNames.polygonMainnet,
   polygonMumbai = NetworkNames.polygonMainnet,

@@ -5,6 +5,7 @@ export enum NetworkNames {
 
   arbitrumMainnet = 'arbitrum',
   arbitrumGoerli = 'arbitrum_goerli',
+  arbitrumSepolia = 'arbitrum_sepolia',
 
   polygonMainnet = 'polygon',
   polygonMumbai = 'polygon_mumbai',
@@ -21,6 +22,7 @@ export type NetworkLabelType =
   | 'Ethereum Goerli'
   | 'Arbitrum'
   | 'Arbitrum Goerli'
+  | 'Arbitrum Sepolia'
   | 'Polygon'
   | 'Polygon Mumbai'
   | 'Optimism'

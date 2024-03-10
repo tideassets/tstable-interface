@@ -3,6 +3,7 @@ import { JsonRpcBatchProvider } from 'blockchain/jsonRpcBatchProvider'
 import {
   arbitrumGoerliRpc,
   arbitrumMainnetRpc,
+  arbitrumSepoliaRpc,
   baseGoerliRpc,
   baseMainnetRpc,
   goerliRpc,
@@ -13,7 +14,7 @@ import {
   polygonMumbaiRpc,
 } from 'config/rpcConfig'
 import { mainnetCacheUrl } from 'config/runtimeConfig'
-import type { ethers } from 'ethers'
+import { ethers } from 'ethers'
 import type { ContractDesc } from 'features/web3Context'
 import { GraphQLClient } from 'graphql-request'
 import type { Abi } from 'helpers/types/Abi.types'
@@ -80,6 +81,14 @@ export function contractDesc(
   return { abi, address, genesisBlock }
 }
 
+export function emptyContractDesc2(
+  abi: Abi[],
+  address: string,
+  genesisBlock = 0,
+): ContractDesc & { genesisBlock: number } {
+  return { abi: {}, address: '', genesisBlock: 0 }
+}
+
 export function emptyContractDesc(contractName: string): ContractDesc & { genesisBlock: number } {
   // not every contract is available on every network
   // hence this function is used to return an empty contract
@@ -106,11 +115,7 @@ const mainnetConfig: NetworkConfig = {
   isL2: false,
   rpcUrl: mainnetRpc,
   getReadProvider: memoize(
-    () =>
-      new JsonRpcBatchProvider(mainnetRpc, {
-        chainId: NetworkIds.MAINNET,
-        name: NetworkNames.ethereumMainnet,
-      }),
+    () => new ethers.providers.JsonRpcProvider('https://mainnet.gateway.tenderly.co'),
   ),
   getCacheApi: memoize(() => new GraphQLClient(mainnetCacheUrl)),
   isCustomFork: false,
@@ -137,11 +142,12 @@ const goerliConfig: NetworkConfig = {
   isL2: false,
   rpcUrl: goerliRpc,
   getReadProvider: memoize(
-    () =>
-      new JsonRpcBatchProvider(goerliRpc, {
-        chainId: NetworkIds.GOERLI,
-        name: NetworkNames.ethereumGoerli,
-      }),
+    () => new ethers.providers.JsonRpcProvider('https://goerli.gateway.tenderly.co'),
+    // () =>
+    // new JsonRpcBatchProvider(goerliRpc, {
+    //   chainId: NetworkIds.GOERLI,
+    //   name: NetworkNames.ethereumGoerli,
+    // }),
   ),
   getCacheApi: memoize(
     () => new GraphQLClient('https://cache-goerli-staging.staging.summer.fi/api/v1'),
@@ -183,6 +189,36 @@ const arbitrumMainnetConfig: NetworkConfig = {
     { label: 'Arbiscan', url: 'https://arbiscan.io/' },
     { label: 'Official Site', url: 'https://arbitrum.foundation/' },
   ],
+}
+
+const arbitrumSepoliaConfig: NetworkConfig = {
+  id: NetworkIds.ARBITRUMSEPOLIA,
+  hexId: NetworkHexIds.ARBITRUMSEPOLIA,
+  mainnetHexId: NetworkHexIds.ARBITRUMMAINNET,
+  testnetHexId: NetworkHexIds.ARBITRUMSEPOLIA,
+  mainnetId: NetworkIds.ARBITRUMMAINNET,
+  testnetId: NetworkIds.ARBITRUMSEPOLIA,
+  name: NetworkNames.arbitrumSepolia,
+  label: 'Arbitrum Sepolia',
+  color: '#28a0f0',
+  icon: arbitrumMainnetIcon as string,
+  badge: arbitrumMainnetBadge as string,
+  gradient: arbitrumMainnetGradient,
+  testnet: true,
+  isEnabled: () => true,
+  isL2: true,
+  token: 'ETH',
+  rpcUrl: arbitrumSepoliaRpc,
+  getReadProvider: memoize(
+    () =>
+      new JsonRpcBatchProvider(arbitrumSepoliaRpc, {
+        chainId: NetworkIds.ARBITRUMSEPOLIA,
+        name: NetworkNames.arbitrumSepolia,
+      }),
+  ),
+  getParentNetwork: () => undefined,
+  getCacheApi: () => undefined,
+  isCustomFork: false,
 }
 
 const arbitrumGoerliConfig: NetworkConfig = {
@@ -413,6 +449,7 @@ export const mainnetNetworks = [mainnetConfig, goerliConfig]
 export const L2Networks = [
   arbitrumMainnetConfig,
   arbitrumGoerliConfig,
+  arbitrumSepoliaConfig,
   polygonMainnetConfig,
   polygonMumbaiConfig,
   optimismMainnetConfig,

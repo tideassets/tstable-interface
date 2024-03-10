@@ -17,6 +17,13 @@ function getRpc(network: NetworkNames): string {
   } catch (error) {
     rpcUrl = `https://${network}.infura.io/v3/${infuraProjectId}`
   }
+  if (network === NetworkNames.ethereumMainnet) {
+    rpcUrl = `https://mainnet.infura.io/v3/${infuraProjectId}`
+  } else if (network === NetworkNames.ethereumGoerli) {
+    rpcUrl = `https://goerli.infura.io/v3/${infuraProjectId}`
+  } else {
+    rpcUrl = `https://${network}.infura.io/v3/${infuraProjectId}`
+  }
   return rpcUrl
 }
 
@@ -24,6 +31,7 @@ export const mainnetRpc = getRpc(NetworkNames.ethereumMainnet)
 export const goerliRpc = getRpc(NetworkNames.ethereumGoerli)
 export const arbitrumMainnetRpc = getRpc(NetworkNames.arbitrumMainnet)
 export const arbitrumGoerliRpc = getRpc(NetworkNames.arbitrumGoerli)
+export const arbitrumSepoliaRpc= getRpc(NetworkNames.arbitrumSepolia)
 export const polygonMainnetRpc = getRpc(NetworkNames.polygonMainnet)
 export const polygonMumbaiRpc = getRpc(NetworkNames.polygonMumbai)
 export const optimismMainnetRpc = getRpc(NetworkNames.optimismMainnet)

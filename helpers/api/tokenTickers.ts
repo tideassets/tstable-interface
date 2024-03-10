@@ -18,18 +18,18 @@ export async function tokenTickers() {
       console.error('Error getting coinbase tickers', error)
       return {}
     }),
-    getCoingeckoTickers().catch((error) => {
-      console.error('Error getting coingecko tickers', error)
-      return {}
-    }),
-    getSDaiOracleTicker().catch((error) => {
-      console.error('Error getting sDAI oracle price', error)
-      return {}
-    }),
-    getWSTETHOracleTicker().catch((error) => {
-      console.error('Error getting WSTETH oracle price', error)
-      return {}
-    }),
+    // getCoingeckoTickers().catch((error) => {
+    //   console.error('Error getting coingecko tickers', error)
+    //   return {}
+    // }),
+    // getSDaiOracleTicker().catch((error) => {
+    //   console.error('Error getting sDAI oracle price', error)
+    //   return {}
+    // }),
+    // getWSTETHOracleTicker().catch((error) => {
+    //   console.error('Error getting WSTETH oracle price', error)
+    //   return {}
+    // }),
   ])
   // Merge prices from all services into one tickers blob
   return results.reduce((acc, el) => ({ ...acc, ...el }), {})
