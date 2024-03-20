@@ -22,7 +22,7 @@ async function fetchTicker(ticker: string): Promise<{ data: CoingeckoApiResponse
   const baseHeaders: Record<string, string> = key ? { 'x-cg-pro-api-key': key } : {}
   return axios({
     method: 'get',
-    timeout: 1000,
+    timeout: 15000,
     url: `${baseUrl}/simple/price?ids=${ticker}&vs_currencies=usd`,
     responseType: 'json',
     headers: {

@@ -38,7 +38,7 @@ const bigNumberify = (val: BigNumberish) => new BigNumber(val.toString())
 const getIlk = (label: string) => (['DSR'].includes(label) ? label : label.split('/')[0])
 
 async function getMakerData(
-  networkId: NetworkIds.MAINNET | NetworkIds.GOERLI,
+  networkId: NetworkIds.MAINNET | NetworkIds.GOERLI | NetworkIds.ARBITRUMSEPOLIA,
   tickers: Tickers,
 ): ProductHubHandlerResponse {
   const rpcProvider = getRpcProvider(networkId)
@@ -59,6 +59,8 @@ async function getMakerData(
       [ilk]: Web3.utils.padRight(Web3.utils.stringToHex(ilk), 64),
     }
   }, {} as { [key: string]: string })
+  // const vatIlkData = await VatContract.ilks(ilksListWithHexValues['ETH-A'])
+  // console.log('vatIlkData', vatIlkData)
 
   const vatIlkPromises = Object.keys(ilksListWithHexValues).map(async (ilk) => {
     const vatIlkData = await VatContract.ilks(ilksListWithHexValues[ilk])
@@ -101,7 +103,7 @@ async function getMakerData(
     }
   })
 
-  const dsrPromise = PotContract.dsr()
+  const dsrPromise = await PotContract.dsr()
 
   return Promise.all([
     Promise.all(vatIlkPromises),
@@ -156,8 +158,9 @@ async function getMakerData(
 
 export default async function (tickers: Tickers): ProductHubHandlerResponse {
   return Promise.all([
-    getMakerData(NetworkIds.MAINNET, tickers),
+    // getMakerData(NetworkIds.MAINNET, tickers),
     getMakerData(NetworkIds.GOERLI, tickers),
+    getMakerData(NetworkIds.ARBITRUMSEPOLIA, tickers),
   ]).then((responses) => {
     return responses.reduce<ProductHubHandlerResponseData>(
       (v, response) => {

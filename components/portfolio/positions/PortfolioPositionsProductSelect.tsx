@@ -18,18 +18,18 @@ export const PortfolioPositionsProductSelect = ({
       label: tPortfolio('borrow'),
       value: PortfolioProductType.borrow,
     },
-    {
-      label: tPortfolio('multiply'),
-      value: PortfolioProductType.multiply,
-    },
-    {
-      label: tPortfolio('earn'),
-      value: PortfolioProductType.earn,
-    },
-    {
-      label: tPortfolio('migrate'),
-      value: PortfolioProductType.migrate,
-    },
+    // {
+    //   label: tPortfolio('multiply'),
+    //   value: PortfolioProductType.multiply,
+    // },
+    // {
+    //   label: tPortfolio('earn'),
+    //   value: PortfolioProductType.earn,
+    // },
+    // {
+    //   label: tPortfolio('migrate'),
+    //   value: PortfolioProductType.migrate,
+    // },
   ]
   return (
     <Box sx={{ mr: 3 }}>

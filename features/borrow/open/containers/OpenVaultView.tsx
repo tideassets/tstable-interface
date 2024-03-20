@@ -71,7 +71,7 @@ export function OpenVaultView({ ilk }: { ilk: string }) {
   }, [])
 
   return (
-    <WithWalletConnection chainId={NetworkHexIds.MAINNET}>
+    <WithWalletConnection chainId={NetworkHexIds.ARBITRUMSEPOLIA}>
       <WithErrorHandler error={error}>
         <WithLoadingIndicator value={openVault}>
           {(_openVault) => (

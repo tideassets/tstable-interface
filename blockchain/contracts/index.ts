@@ -4,7 +4,7 @@ import { getContractNetworkByWalletNetwork, NetworkIds, networkSetById } from 'b
 import type { ContractDesc } from 'features/web3Context'
 
 import { arbitrumContracts } from './arbitrum'
-import { arbitrumContracts } from './arbitrum'
+import { arbitrumSepoliaContracts } from './arbSepolia'
 import { baseContracts } from './base'
 import { goerliContracts } from './goerli'
 import { mainnetContracts } from './mainnet'
@@ -15,7 +15,7 @@ import { optimismContracts } from './optimism'
 const extendedTokensContracts: { [key: string]: ContractDesc & { genesisBlock: number } } = {}
 
 export const allNetworksContracts = {
-  [NetworkIds.MAINNET]: mainnetContracts,
+  // [NetworkIds.MAINNET]: mainnetContracts,
   [NetworkIds.HARDHAT]: mainnetContracts,
   [NetworkIds.GOERLI]: goerliContracts,
   [NetworkIds.OPTIMISMMAINNET]: optimismContracts,
@@ -23,6 +23,7 @@ export const allNetworksContracts = {
   [NetworkIds.ARBITRUMMAINNET]: arbitrumContracts,
   [NetworkIds.BASEMAINNET]: baseContracts,
   [NetworkIds.ARBITRUMGOERLI]: {},
+  [NetworkIds.ARBITRUMSEPOLIA]: arbitrumSepoliaContracts,
   [NetworkIds.BASEGOERLI]: {},
   [NetworkIds.POLYGONMAINNET]: {},
   [NetworkIds.POLYGONMUMBAI]: {},

@@ -28,14 +28,17 @@ import * as dssProxyActions from 'blockchain/abi/dss-proxy-actions.json'
 import * as dssProxyActionsCharter from 'blockchain/abi/dss-proxy-actions-charter.json'
 import * as dssProxyActionsCropjoin from 'blockchain/abi/dss-proxy-actions-cropjoin.json'
 import * as dssProxyActionsDsr from 'blockchain/abi/dss-proxy-actions-dsr.json'
+import * as erc20 from 'blockchain/abi/erc20.json'
 import * as exchange from 'blockchain/abi/exchange.json'
 import * as getCdps from 'blockchain/abi/get-cdps.json'
 import * as lidoCrvLiquidityFarmingReward from 'blockchain/abi/lido-crv-liquidity-farming-reward.json'
 import * as otc from 'blockchain/abi/matching-market.json'
+import * as mcdDai from 'blockchain/abi/mcd-dai.json'
 import * as mcdDog from 'blockchain/abi/mcd-dog.json'
 import * as mcdEnd from 'blockchain/abi/mcd-end.json'
 import * as mcdJoinDai from 'blockchain/abi/mcd-join-dai.json'
 import * as mcdJug from 'blockchain/abi/mcd-jug.json'
+import * as mcdOsm from 'blockchain/abi/mcd-osm.json'
 import * as mcdPot from 'blockchain/abi/mcd-pot.json'
 import * as mcdSpot from 'blockchain/abi/mcd-spot.json'
 import * as merkleRedeemer from 'blockchain/abi/merkle-redeemer.json'
@@ -45,9 +48,9 @@ import * as operationExecutor from 'blockchain/abi/operation-executor.json'
 import * as otcSupport from 'blockchain/abi/otc-support-methods.json'
 import * as vat from 'blockchain/abi/vat.json'
 import {
-  getCollateralJoinContracts,
+  // getCollateralJoinContracts,
   getCollaterals,
-  getOsms,
+  // getOsms,
 } from 'blockchain/addresses/addressesUtils'
 import { contractDesc, emptyContractDesc, emptyContractDesc2 } from 'blockchain/networks'
 import { tokensArbitrum } from 'blockchain/tokens/'
@@ -63,47 +66,66 @@ const { arbitrum } = ADDRESSES
 export const arbitrumSepoliaContracts: MainnetContractsWithOptional = {
   otc: emptyContractDesc2(otc, arbitrum.common.Otc),
   collaterals: getCollaterals(arbitrum.common, supportedIlks), // nouse
-  tokens: tokensArbitrum,
+  tokens: {
+    ETH: contractDesc(erc20, '0xceBD1a3E9aaD7E60eDD509809e7f9cFF449b7851'),
+    WETH: contractDesc(erc20, '0xceBD1a3E9aaD7E60eDD509809e7f9cFF449b7851'),
+    USDC: contractDesc(erc20, '0x39E618D761fdD06bF65065d2974128aAeC7b3Fed'),
+    WBTC: contractDesc(erc20, '0x4Ac0ED77C4375D48B51D56cc49b7710c3640b9c2'),
+    DAI: contractDesc(erc20, '0x9714e454274dC66BE57FA8361233221a376f4C2e'),
+  },
   tokensMainnet: mainnetContracts.tokensMainnet, // use in mutiplier, not in borrow
   joins: {
-    // todo:
-    ...getCollateralJoinContracts(
-      arbitrum.maker.joins,
-      supportedIlks.filter(
-        // these are not supported on goerli
-        (ilk) => !['GUNIV3DAIUSDC1-A', 'GUNIV3DAIUSDC2-A', 'GNO-A'].includes(ilk),
-      ),
-    ),
+    'ETH-A': '0x6904819Dc93F820a106572125DcFab2d43cd2f95',
+    'ETH-B': '0x5199883969dc50AA3cDEE614C04c46d1b63BB962',
+    'ETH-C': '0x1392366091ad3d1C94465b24eb07862d1A79035D',
+    'USDC-A': '0xE2bac20dce148219E0B331000ecd3424aF2773Fe',
+    'USDC-B': '0x6662eD37bCC5D4170af5F5547f0Ec8f62F20F0ae',
+    'WBTC-A': '0x8A6B06fEAEb43D0Ce39eeE0c4e89Cb4d6153504b',
+    'WBTC-B': '0xB3E08Cd6d41cAa75064fC1606A0f7249FD160644',
+    'WBTC-C': '0x480f27AD3Be664805C5DBB8205e70FE45f52e74A',
+    // ...getCollateralJoinContracts(
+    //   arbitrum.maker.joins,
+    //   supportedIlks.filter(
+    //     // these are not supported on goerli
+    //     (ilk) => !['GUNIV3DAIUSDC1-A', 'GUNIV3DAIUSDC2-A', 'GNO-A'].includes(ilk),
+    //   ),
+    // ),
   },
-  getCdps: emptyContractDesc2(getCdps, arbitrum.maker.common.GetCdps), // todo:
-  mcdOsms: getOsms(arbitrum.maker.pips, supportedIlks), // todo:
-  mcdJug: emptyContractDesc2(mcdJug, arbitrum.maker.common.Jug), // todo:
-  mcdPot: emptyContractDesc2(mcdPot, arbitrum.maker.common.Pot), // todo:
-  mcdEnd: emptyContractDesc2(mcdEnd, arbitrum.maker.common.End), // todo:
-  mcdSpot: emptyContractDesc2(mcdSpot, arbitrum.maker.common.Spot), // todo:
-  mcdDog: emptyContractDesc2(mcdDog, arbitrum.maker.common.Dog), // todo:
-  mcdJoinDai: emptyContractDesc2(mcdJoinDai, arbitrum.maker.joins.MCD_JOIN_DAI), // todo:
+  getCdps: contractDesc(getCdps, '0xaed99174a11499d6b04c9750f94E6814bF0AF773'),
+  // mcdOsms: getOsms(arbitrum.maker.pips, supportedIlks),
+  mcdOsms: {
+    ETH: contractDesc(mcdOsm, '0x627739908377A4AdF99387536e27d456d99617E6'),
+    USDC: contractDesc(mcdOsm, '0xD642A328c0614d4f23f9aC6abED75403C442E58c'),
+    WBTC: contractDesc(mcdOsm, '0x1362a254BcaDfEF64F81258CE423A8A2d766ffb5'),
+  },
+  mcdJug: contractDesc(mcdJug, '0x7691624b503821B1cef62F0C449A0377A54851A8'),
+  mcdPot: contractDesc(mcdPot, '0x26D4E18dc289E7A018afb8266cEb4051E416F03E'),
+  mcdEnd: contractDesc(mcdEnd, '0x793B2e0238b5F82CEb5148E9e45c564fd4693ABD'),
+  mcdSpot: contractDesc(mcdSpot, '0x127703382d085D0782B7f3265397f8DF241fBC98'),
+  mcdDog: contractDesc(mcdDog, '0x8894E48f58385f0B8C470D726341D0bb88ffC706'),
+  mcdJoinDai: contractDesc(mcdJoinDai, '0xacd0Fff9B9005F9E7d49851Aab528964D0018200'),
 
   merkleRedeemer: emptyContractDesc2(merkleRedeemer, arbitrum.common.MerkleRedeemer), // use in refferal
   dssCharter: emptyContractDesc2(dssCharter, arbitrum.common.DssCharter), // not use
-  dssCdpManager: emptyContractDesc2(dssCdpManager, arbitrum.maker.common.CdpManager), // todo:
+  dssCdpManager: contractDesc(dssCdpManager, '0x5238708EAa13395B622F428191efdAf2307dFFb2'),
   otcSupportMethods: emptyContractDesc2(otcSupport, arbitrum.common.OtcSupportMethods),
-  vat: emptyContractDesc2(vat, arbitrum.maker.common.Vat), // todo:
-  dsProxyRegistry: emptyContractDesc2(dsProxyRegistry, arbitrum.mpa.core.DSProxyRegistry), // todo:
-  dsProxyFactory: emptyContractDesc2(dsProxyFactory, arbitrum.mpa.core.DSProxyFactory), // todo:
-  dssProxyActions: emptyContractDesc2(dssProxyActions, arbitrum.common.DssProxyActions), // todo:
+  vat: contractDesc(vat, '0x53139FEe446B5493b0546FF7D2634FB7306e839c'),
+  dsProxyRegistry: contractDesc(dsProxyRegistry, '0x7Cf0a2A043215c8D632a396d922f9fA77005A4eF'),
+  dsProxyFactory: contractDesc(dsProxyFactory, '0x579b4906F5E08701d92Cf1486511CB1A722c3397'),
+  dssProxyActions: contractDesc(dssProxyActions, '0xD067f0242b7580eB8036032AA14480daa8c6fF8B'), //todo:
   dssProxyActionsCharter: emptyContractDesc2(
     // not use
     dssProxyActionsCharter,
     arbitrum.common.DssProxyActionsCharter,
   ),
-  cdpRegistry: emptyContractDesc2(cdpRegistry, arbitrum.common.CdpRegistry), // todo:
-  dssProxyActionsCropjoin: emptyContractDesc2( // not use
+  cdpRegistry: emptyContractDesc2(cdpRegistry, arbitrum.common.CdpRegistry),
+  dssProxyActionsCropjoin: emptyContractDesc2(
+    // not use
     // not use
     dssProxyActionsCropjoin,
     arbitrum.common.DssProxyActionsCropjoin,
   ),
-  dssMultiplyProxyActions: emptyContractDesc2( // todo:
+  dssMultiplyProxyActions: emptyContractDesc2(
     dssMultiplyProxyActions,
     arbitrum.common.DssMultiplyProxyActions,
   ),
@@ -125,7 +147,10 @@ export const arbitrumSepoliaContracts: MainnetContractsWithOptional = {
   lowerFeesExchange: emptyContractDesc2(exchange, arbitrum.common.LowerFeesExchange),
   // Currently this is not supported on Goerli - no deployed contract
   fmm: arbitrum.maker.common.FlashMintModule,
-  dssProxyActionsDsr: emptyContractDesc2(dssProxyActionsDsr, arbitrum.common.DssProxyActionsDsr),
+  dssProxyActionsDsr: contractDesc(
+    dssProxyActionsDsr,
+    '0xf0c3cb5425a4738ed47d5c24358673f75e9116f8',
+  ),
   lidoCrvLiquidityFarmingReward: emptyContractDesc2(
     lidoCrvLiquidityFarmingReward,
     arbitrum.common.LidoCrvLiquidityFarmingReward,
@@ -137,8 +162,8 @@ export const arbitrumSepoliaContracts: MainnetContractsWithOptional = {
   ),
   aaveV2PriceOracle: emptyContractDesc2(aaveV2PriceOracle, arbitrum.aave.v2.Oracle),
   chainlinkPriceOracle: {
-    USDCUSD: emptyContractDesc2(chainLinkPriceOracle, arbitrum.common.ChainlinkPriceOracle_USDCUSD),
-    ETHUSD: emptyContractDesc2(chainLinkPriceOracle, arbitrum.common.ChainlinkPriceOracle_ETHUSD),
+    USDCUSD: contractDesc(chainLinkPriceOracle, '0x0153002d20B96532C639313c2d54c3dA09109309'),
+    ETHUSD: contractDesc(chainLinkPriceOracle, '0xd30e2101a97dcbAeBCBC04F14C3f624E67A35165'),
   },
   aaveV2LendingPool: emptyContractDesc('aaveV2LendingPool'),
 

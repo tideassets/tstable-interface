@@ -2,17 +2,19 @@ import { cacheObject } from 'helpers/api/cacheObject'
 import { tokenTickers } from 'helpers/api/tokenTickers'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-export const getTicker = cacheObject(tokenTickers, 2 * 60, 'token-tickers')
+export const getTicker = cacheObject(tokenTickers, 10, 'token-tickers')
 
 async function tokensPricesHandler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case 'GET':
       try {
         const tickers = await getTicker()
+        console.log('XXXXXXXXXXXX tickers', tickers)
         if (tickers?.data) {
           res.setHeader('Cache-Control', 'public, s-maxage=90, stale-while-revalidate=119')
           return res.status(200).json(tickers.data)
         }
+        console.error('Token tickers unavailable')
 
         return res.status(500).json({ error: 'Token tickers unavailable' })
       } catch (e) {

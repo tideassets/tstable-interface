@@ -46,12 +46,12 @@ export const productHubProductOptions: { [key in ProductHubProductType]: HeaderS
     value: 'borrow',
     icon: [selectBorrow, selectBorrowActive],
   },
-  multiply: {
-    title: 'Multiply',
-    description: 'Increase your exposure to any crypto asset',
-    value: 'multiply',
-    icon: [selectMultiply, selectMultiplyActive],
-  },
+  // multiply: {
+  //   title: 'Multiply',
+  //   description: 'Increase your exposure to any crypto asset',
+  //   value: 'multiply',
+  //   icon: [selectMultiply, selectMultiplyActive],
+  // },
   earn: {
     title: 'Earn',
     description: 'Earn long term yields to compound your crypto capital',
@@ -121,18 +121,18 @@ export const productHubOptionsMapBase: {
       GHO: productHubTokenOptions.GHO,
     },
   },
-  multiply: {
-    product: productHubProductOptions.multiply,
-    tokens: {
-      all: productHubTokenOptions.all,
-      ETH: productHubTokenOptions.ETH,
-      BTC: productHubTokenOptions.BTC,
-      USDC: productHubTokenOptions.USDC,
-      YFI: productHubTokenOptions.YFI,
-      DAI: productHubTokenOptions.DAI,
-      GHO: productHubTokenOptions.GHO,
-    },
-  },
+  // multiply: {
+  //   product: productHubProductOptions.multiply,
+  //   tokens: {
+  //     all: productHubTokenOptions.all,
+  //     ETH: productHubTokenOptions.ETH,
+  //     BTC: productHubTokenOptions.BTC,
+  //     USDC: productHubTokenOptions.USDC,
+  //     YFI: productHubTokenOptions.YFI,
+  //     DAI: productHubTokenOptions.DAI,
+  //     GHO: productHubTokenOptions.GHO,
+  //   },
+  // },
   earn: {
     product: productHubProductOptions.earn,
     tokens: {
@@ -151,8 +151,8 @@ const productHubOptionsMap = clone(productHubOptionsMapBase)
 if (getLocalAppConfig('features')[FeaturesEnum.AjnaSafetySwitch]) {
   delete productHubOptionsMap.borrow.tokens.YFI
   delete productHubOptionsMap.borrow.tokens.GHO
-  delete productHubOptionsMap.multiply.tokens.YFI
-  delete productHubOptionsMap.multiply.tokens.GHO
+  // delete productHubOptionsMap.multiply.tokens.YFI
+  // delete productHubOptionsMap.multiply.tokens.GHO
   delete productHubOptionsMap.earn.tokens.BTC
   delete productHubOptionsMap.earn.tokens.USDC
   delete productHubOptionsMap.earn.tokens.GHO
@@ -182,17 +182,17 @@ export const productHubNetworkFilter: GenericMultiselectOption[] = [
     value: networksByName[BaseNetworkNames.Arbitrum].name,
     image: networksByName[BaseNetworkNames.Arbitrum].icon,
   },
-  {
-    label: networksByName[BaseNetworkNames.Optimism].label,
-    value: networksByName[BaseNetworkNames.Optimism].name,
-    image: networksByName[BaseNetworkNames.Optimism].icon,
-  },
-  {
-    label: networksByName[BaseNetworkNames.Base].label,
-    value: networksByName[BaseNetworkNames.Base].name,
-    image: networksByName[BaseNetworkNames.Base].icon,
-    featureFlag: FeaturesEnum.BaseNetworkEnabled,
-  },
+  // {
+  //   label: networksByName[BaseNetworkNames.Optimism].label,
+  //   value: networksByName[BaseNetworkNames.Optimism].name,
+  //   image: networksByName[BaseNetworkNames.Optimism].icon,
+  // },
+  // {
+  //   label: networksByName[BaseNetworkNames.Base].label,
+  //   value: networksByName[BaseNetworkNames.Base].name,
+  //   image: networksByName[BaseNetworkNames.Base].icon,
+  //   featureFlag: FeaturesEnum.BaseNetworkEnabled,
+  // },
 ]
 
 export const productHubTestNetworkFilter: GenericMultiselectOption[] = [
@@ -206,48 +206,48 @@ export const productHubTestNetworkFilter: GenericMultiselectOption[] = [
     value: networksByName[NetworkNames.arbitrumSepolia].name,
     image: networksByName[NetworkNames.arbitrumSepolia].icon,
   },
-  {
-    label: networksByName[BaseNetworkNames.Arbitrum].label,
-    value: networksByName[NetworkNames.arbitrumGoerli].name,
-    image: networksByName[NetworkNames.arbitrumGoerli].icon,
-  },
-  {
-    label: networksByName[BaseNetworkNames.Optimism].label,
-    value: networksByName[NetworkNames.optimismGoerli].name,
-    image: networksByName[NetworkNames.optimismGoerli].icon,
-  },
+  // {
+  //   label: networksByName[BaseNetworkNames.Arbitrum].label,
+  //   value: networksByName[NetworkNames.arbitrumGoerli].name,
+  //   image: networksByName[NetworkNames.arbitrumGoerli].icon,
+  // },
+  // {
+  //   label: networksByName[BaseNetworkNames.Optimism].label,
+  //   value: networksByName[NetworkNames.optimismGoerli].name,
+  //   image: networksByName[NetworkNames.optimismGoerli].icon,
+  // },
 ]
 
 export const productHubProtocolFilter: GenericMultiselectOption[] = [
-  {
-    label: lendingProtocolsByName[LendingProtocol.AaveV2].label,
-    value: lendingProtocolsByName[LendingProtocol.AaveV2].name,
-    image: lendingProtocolsByName[LendingProtocol.AaveV2].icon,
-  },
-  {
-    label: lendingProtocolsByName[LendingProtocol.AaveV3].label,
-    value: lendingProtocolsByName[LendingProtocol.AaveV3].name,
-    image: lendingProtocolsByName[LendingProtocol.AaveV3].icon,
-  },
-  {
-    label: lendingProtocolsByName[LendingProtocol.Ajna].label,
-    value: lendingProtocolsByName[LendingProtocol.Ajna].name,
-    image: lendingProtocolsByName[LendingProtocol.Ajna].icon,
-  },
+  // {
+  //   label: lendingProtocolsByName[LendingProtocol.AaveV2].label,
+  //   value: lendingProtocolsByName[LendingProtocol.AaveV2].name,
+  //   image: lendingProtocolsByName[LendingProtocol.AaveV2].icon,
+  // },
+  // {
+  //   label: lendingProtocolsByName[LendingProtocol.AaveV3].label,
+  //   value: lendingProtocolsByName[LendingProtocol.AaveV3].name,
+  //   image: lendingProtocolsByName[LendingProtocol.AaveV3].icon,
+  // },
+  // {
+  //   label: lendingProtocolsByName[LendingProtocol.Ajna].label,
+  //   value: lendingProtocolsByName[LendingProtocol.Ajna].name,
+  //   image: lendingProtocolsByName[LendingProtocol.Ajna].icon,
+  // },
   {
     label: lendingProtocolsByName[LendingProtocol.Maker].label,
     value: lendingProtocolsByName[LendingProtocol.Maker].name,
     image: lendingProtocolsByName[LendingProtocol.Maker].icon,
   },
-  {
-    label: lendingProtocolsByName[LendingProtocol.MorphoBlue].label,
-    value: lendingProtocolsByName[LendingProtocol.MorphoBlue].name,
-    image: lendingProtocolsByName[LendingProtocol.MorphoBlue].icon,
-    featureFlag: FeaturesEnum.MorphoBlue,
-  },
-  {
-    label: lendingProtocolsByName[LendingProtocol.SparkV3].label,
-    value: lendingProtocolsByName[LendingProtocol.SparkV3].name,
-    image: lendingProtocolsByName[LendingProtocol.SparkV3].icon,
-  },
+  // {
+  //   label: lendingProtocolsByName[LendingProtocol.MorphoBlue].label,
+  //   value: lendingProtocolsByName[LendingProtocol.MorphoBlue].name,
+  //   image: lendingProtocolsByName[LendingProtocol.MorphoBlue].icon,
+  //   featureFlag: FeaturesEnum.MorphoBlue,
+  // },
+  // {
+  //   label: lendingProtocolsByName[LendingProtocol.SparkV3].label,
+  //   value: lendingProtocolsByName[LendingProtocol.SparkV3].name,
+  //   image: lendingProtocolsByName[LendingProtocol.SparkV3].icon,
+  // },
 ]

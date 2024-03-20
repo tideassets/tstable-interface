@@ -18,7 +18,7 @@ export async function handleGetProductHubData(
   req: HandleGetProductHubDataProps,
   res: NextApiResponse,
 ) {
-  const { protocols, testnet = false } = req.body
+  const { protocols, testnet } = req.body
   if (!protocols || !protocols.length) {
     return res.status(400).json({
       errorMessage: 'Missing required parameter (protocols), check error object for more details',
@@ -28,9 +28,14 @@ export async function handleGetProductHubData(
     })
   }
 
-  const network = networks
-    .filter(({ testnet: isTestnet }) => isTestnet === testnet)
-    .map(({ name }) => name)
+  console.log('protocols', protocols)
+
+  // const network = networks
+  //   .filter(({ testnet: isTestnet }) => isTestnet === testnet)
+  //   .map(({ name }) => name)
+
+  // console.log('network', networks, network)
+  const network = ['arbitrum_sepolia']
 
   await prisma.productHubItems
     .findMany({
@@ -53,7 +58,6 @@ export async function handleGetProductHubData(
       })
     })
     .catch((error) => {
-      console.log('Error getting product hub data', error)
       return res.status(500).json({
         errorMessage: 'Error getting product hub data',
         error: error.toString(),

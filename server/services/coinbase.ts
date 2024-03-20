@@ -20,7 +20,7 @@ const requiredTickers = tokens
 async function fetchTicker(product_id: string): Promise<{ data: CoinbaseApiResponse }> {
   return axios({
     method: 'get',
-    timeout: 1000,
+    timeout: 15000,
     url: `https://api.pro.coinbase.com/products/${product_id}/ticker`,
     responseType: 'json',
     headers: {

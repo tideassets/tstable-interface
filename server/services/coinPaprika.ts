@@ -47,7 +47,7 @@ const requiredTickers = tokens
 function fetchTicker(): Promise<{ data: CoinPaprikaApiResponse[] }> {
   return axios({
     method: 'get',
-    timeout: 1000,
+    timeout: 5000,
     url: `${process.env.COINPAPRIKA_API_URL}/tickers`,
     responseType: 'json',
     headers: {

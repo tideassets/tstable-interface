@@ -4,31 +4,31 @@ export enum NetworkNames {
   ethereumGoerli = 'ethereum_goerli',
 
   arbitrumMainnet = 'arbitrum',
-  arbitrumGoerli = 'arbitrum_goerli',
+  // arbitrumGoerli = 'arbitrum_goerli',
   arbitrumSepolia = 'arbitrum_sepolia',
 
-  polygonMainnet = 'polygon',
-  polygonMumbai = 'polygon_mumbai',
+  // polygonMainnet = 'polygon',
+  // polygonMumbai = 'polygon_mumbai',
 
-  optimismMainnet = 'optimism',
-  optimismGoerli = 'optimism_goerli',
+  // optimismMainnet = 'optimism',
+  // optimismGoerli = 'optimism_goerli',
 
-  baseMainnet = 'base',
-  baseGoerli = 'base_goerli',
+  // baseMainnet = 'base',
+  // baseGoerli = 'base_goerli',
 }
 
 export type NetworkLabelType =
   | 'Ethereum'
   | 'Ethereum Goerli'
   | 'Arbitrum'
-  | 'Arbitrum Goerli'
+  // | 'Arbitrum Goerli'
   | 'Arbitrum Sepolia'
-  | 'Polygon'
-  | 'Polygon Mumbai'
-  | 'Optimism'
-  | 'Optimism Goerli'
-  | 'Base'
-  | 'Base Goerli'
+  // | 'Polygon'
+  // | 'Polygon Mumbai'
+  // | 'Optimism'
+  // | 'Optimism Goerli'
+  // | 'Base'
+  // | 'Base Goerli'
 
 export function isSupportedNetwork(value: string): value is NetworkNames {
   return Object.values<string>(NetworkNames).includes(value)

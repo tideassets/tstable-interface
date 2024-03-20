@@ -14,6 +14,7 @@ export function resolveENSName$(context$: Observable<Context>, address: string) 
       const provider = new ethers.providers.JsonRpcBatchProvider(
         getNetworkRpcEndpoint(context.chainId),
       )
+      console.log('ens', provider, address)
       return provider
         .lookupAddress(address)
         .catch((err: Error) =>

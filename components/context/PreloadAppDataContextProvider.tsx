@@ -42,12 +42,12 @@ export function PreloadAppDataContextProvider({ children }: PropsWithChildren<{}
   const [config, setConfig] = useState<ConfigResponseType | undefined>(undefined)
   const { data: productHub } = useProductHubData({
     protocols: [
-      ...(AjnaSafetySwitch ? [] : [LendingProtocol.Ajna]),
-      LendingProtocol.AaveV2,
-      LendingProtocol.AaveV3,
+      // ...(AjnaSafetySwitch ? [] : [LendingProtocol.Ajna]),
+      // LendingProtocol.AaveV2,
+      // LendingProtocol.AaveV3,
       LendingProtocol.Maker,
-      ...(MorphoSafetySwitch ? [] : [LendingProtocol.MorphoBlue]),
-      LendingProtocol.SparkV3,
+      // ...(MorphoSafetySwitch ? [] : [LendingProtocol.MorphoBlue]),
+      // LendingProtocol.SparkV3,
     ].filter((p) => p) as LendingProtocol[],
   })
 

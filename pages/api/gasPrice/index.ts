@@ -6,6 +6,10 @@ import NodeCache from 'node-cache'
 import type { GasFeesApiResponse, GasPrices } from 'pages/api/gasPrice/types'
 
 const cache = new NodeCache({ stdTTL: 10 })
+const apiKey = '1c177df366ef47b689e8b84ee6c7297d' // replace with your API key
+const apiKeySecret = 'a04708ff12ab454daaa36304f45d99dd' // replace with your API key secret
+
+const Auth = Buffer.from(apiKey + ':' + apiKeySecret).toString('base64')
 
 const handler = async function ({ query }: NextApiRequest, res: NextApiResponse) {
   const config = getConfig()
@@ -23,6 +27,7 @@ const handler = async function ({ query }: NextApiRequest, res: NextApiResponse)
       error: 'Unsupported network',
     })
   }
+  const chainId = networksById[networkId].mainnetId
 
   const timeCacheLabel = `time-${networkId}`
   const gasFeeEstimateCacheLabel = `gasFeeEstimate-${networkId}`
@@ -32,7 +37,11 @@ const handler = async function ({ query }: NextApiRequest, res: NextApiResponse)
     axios
       .request<GasFeesApiResponse>({
         method: 'get',
-        url: `${url}${networkId}`,
+        // url: `${url}${networkId}`,
+        url: `https://gas.api.infura.io/networks/${chainId}/suggestedGasFees`,
+        headers: {
+          Authorization: `Basic ${Auth}`,
+        },
         responseType: 'json',
       })
       .then(

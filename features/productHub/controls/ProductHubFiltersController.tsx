@@ -118,7 +118,7 @@ export const ProductHubFiltersController: FC<ProductHubFiltersControllerProps> =
           }}
         />
       )}
-      {selectedProduct === ProductHubProductType.Multiply && (
+      {/* {selectedProduct === ProductHubProductType.Multiply && (
         <GenericMultiselect
           initialValues={queryString.secondaryToken}
           label={t('product-hub.filters.secondary-tokens')}
@@ -146,8 +146,8 @@ export const ProductHubFiltersController: FC<ProductHubFiltersControllerProps> =
             )
           }}
         />
-      )}
-      {!isSmallerScreen && <Box />}
+      )} */}
+      {/* {!isSmallerScreen && <Box />}
       {selectedProduct === ProductHubProductType.Multiply && (
         <GenericMultiselect
           initialValues={queryString.strategy}
@@ -172,7 +172,7 @@ export const ProductHubFiltersController: FC<ProductHubFiltersControllerProps> =
             )
           }}
         />
-      )}
+      )} */}
       <GenericMultiselect
         initialValues={queryString.network || initialNetwork}
         label={t('product-hub.filters.networks')}

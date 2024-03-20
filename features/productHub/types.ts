@@ -10,7 +10,7 @@ export type ProductHubManagementType = 'active' | 'passive'
 
 export enum ProductHubProductType {
   Borrow = 'borrow',
-  Multiply = 'multiply',
+  // Multiply = 'multiply',
   Earn = 'earn',
 }
 
@@ -20,12 +20,12 @@ export type ProductHubSupportedNetworks =
   | NetworkNames.ethereumMainnet
   | NetworkNames.ethereumGoerli
   | NetworkNames.arbitrumMainnet
-  | NetworkNames.arbitrumGoerli
   | NetworkNames.arbitrumSepolia
-  | NetworkNames.optimismMainnet
-  | NetworkNames.optimismGoerli
-  | NetworkNames.baseMainnet
-  | NetworkNames.baseGoerli
+  // | NetworkNames.arbitrumGoerli
+  // | NetworkNames.optimismMainnet
+  // | NetworkNames.optimismGoerli
+  // | NetworkNames.baseMainnet
+  // | NetworkNames.baseGoerli
 
 export interface ProductHubItemBasics {
   label: string

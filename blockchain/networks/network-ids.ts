@@ -1,5 +1,6 @@
 export enum NetworkIds {
-  MAINNET = 1,
+  // MAINNET = 1,
+  MAINNET = 421614,
   GOERLI = 5,
   HARDHAT = 2137,
   ARBITRUMMAINNET = 42161,

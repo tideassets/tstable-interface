@@ -34,6 +34,7 @@ export async function createOrUpdate(req: NextApiRequest, res: NextApiResponse) 
     return res.status(403).send('Incorrect type of vault')
   }
 
+  console.log(vaultData)
   const vault = await selectVaultByIdAndChainId(vaultData)
 
   if (vault === null || vault.owner_address === user.address) {

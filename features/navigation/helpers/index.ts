@@ -1,4 +1,4 @@
-export { getProductMultiplyNavItems } from './getProductMultiplyNavItems'
+// export { getProductMultiplyNavItems } from './getProductMultiplyNavItems'
 export { getProductBorrowNavItems } from './getProductBorrowNavItems'
 export { getProductEarnNavItems } from './getProductEarnNavItems'
 export { getNavTokensDataPerToken } from './getNavTokensDataPerToken'

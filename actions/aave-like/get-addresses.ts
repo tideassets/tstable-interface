@@ -16,29 +16,29 @@ export function getAddresses(
 ): AaveLikeStrategyAddresses & { swapAddress: string } {
   const contracts = getNetworkContracts(networkId)
   // Spark V3 is mainnet only right now
-  const contractProperties =
-    networkId === NetworkIds.MAINNET
-      ? [
-          'aaveV3Pool',
-          'operationExecutor',
-          'aaveV3PoolDataProvider',
-          'aaveV2LendingPool',
-          'aaveV2PriceOracle',
-          'aaveV2ProtocolDataProvider',
-          'aaveV3Oracle',
-          'sparkV3Pool',
-          'sparkV3Oracle',
-          'sparkV3PoolDataProvider',
-        ]
-      : [
-          'aaveV3Pool',
-          'operationExecutor',
-          'aaveV3PoolDataProvider',
-          'aaveV2LendingPool',
-          'aaveV2PriceOracle',
-          'aaveV2ProtocolDataProvider',
-          'aaveV3Oracle',
-        ]
+  const contractProperties: ReadonlyArray<string> = []
+    // networkId === NetworkIds.MAINNET
+    //   ? [
+          // 'aaveV3Pool',
+          // 'operationExecutor',
+          // 'aaveV3PoolDataProvider',
+          // 'aaveV2LendingPool',
+          // 'aaveV2PriceOracle',
+          // 'aaveV2ProtocolDataProvider',
+          // 'aaveV3Oracle',
+          // 'sparkV3Pool',
+          // 'sparkV3Oracle',
+          // 'sparkV3PoolDataProvider',
+      //   ]
+      // : [
+          // 'aaveV3Pool',
+          // 'operationExecutor',
+          // 'aaveV3PoolDataProvider',
+          // 'aaveV2LendingPool',
+          // 'aaveV2PriceOracle',
+          // 'aaveV2ProtocolDataProvider',
+          // 'aaveV3Oracle',
+        // ]
   ensureContractsExist(networkId, contracts, contractProperties)
   ensureGivenTokensExist(networkId, contracts, [
     'DAI',
@@ -46,15 +46,15 @@ export function getAddresses(
     'WETH',
     'USDC',
     'WBTC',
-    'WSTETH',
-    'CBETH',
-    'RETH',
-    'STETH',
-    'GHO',
-    'USDT',
-    'SDAI',
-    'LUSD',
-    'FRAX',
+    // 'WSTETH',
+    // 'CBETH',
+    // 'RETH',
+    // 'STETH',
+    // 'GHO',
+    // 'USDT',
+    // 'SDAI',
+    // 'LUSD',
+    // 'FRAX',
   ])
   ensureChainlinkTokenPairsExist(networkId, contracts, ['ETHUSD'])
   ensurePropertiesExist(networkId, contracts, ['swapAddress'])
@@ -66,15 +66,15 @@ export function getAddresses(
       WETH: contracts.tokens['WETH'].address,
       USDC: contracts.tokens['USDC'].address,
       WBTC: contracts.tokens['WBTC'].address,
-      WSTETH: contracts.tokens['WSTETH'].address,
-      CBETH: contracts.tokens['CBETH'].address,
-      RETH: contracts.tokens['RETH'].address,
-      STETH: contracts.tokens['STETH'].address,
-      GHO: contracts.tokens['GHO'].address,
-      USDT: contracts.tokens['USDT'].address,
-      SDAI: contracts.tokens['SDAI'].address,
-      LUSD: contracts.tokens['LUSD'].address,
-      FRAX: contracts.tokens['FRAX'].address,
+      // WSTETH: contracts.tokens['WSTETH'].address,
+      // CBETH: contracts.tokens['CBETH'].address,
+      // RETH: contracts.tokens['RETH'].address,
+      // STETH: contracts.tokens['STETH'].address,
+      // GHO: contracts.tokens['GHO'].address,
+      // USDT: contracts.tokens['USDT'].address,
+      // SDAI: contracts.tokens['SDAI'].address,
+      // LUSD: contracts.tokens['LUSD'].address,
+      // FRAX: contracts.tokens['FRAX'].address,
     } as AaveLikeStrategyAddresses['tokens'],
     chainlinkEthUsdPriceFeed: contracts.chainlinkPriceOracle['ETHUSD'].address,
     operationExecutor: contracts.operationExecutor.address,

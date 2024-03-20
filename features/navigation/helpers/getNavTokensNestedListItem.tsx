@@ -35,21 +35,21 @@ export const getNavTokensNestedListItem = (
     ),
     url: `${INTERNAL_LINKS.borrow}/${tokenGroup}`,
   }
-  const multiply = {
-    title: t('nav.multiply'),
-    description: (
-      <Trans
-        i18nKey={maxMultiple === 0 ? 'nav.tokens-multiply-simple' : 'nav.tokens-multiply'}
-        values={{
-          token,
-          maxMultiple: maxMultiple.toFixed(2),
-          product: capitalize(ProductHubProductType.Multiply),
-        }}
-        components={{ em: <em /> }}
-      />
-    ),
-    url: `${INTERNAL_LINKS.multiply}/${tokenGroup}`,
-  }
+  // const multiply = {
+  //   title: t('nav.multiply'),
+  //   description: (
+  //     <Trans
+  //       i18nKey={maxMultiple === 0 ? 'nav.tokens-multiply-simple' : 'nav.tokens-multiply'}
+  //       values={{
+  //         token,
+  //         maxMultiple: maxMultiple.toFixed(2),
+  //         product: capitalize(ProductHubProductType.Multiply),
+  //       }}
+  //       components={{ em: <em /> }}
+  //     />
+  //   ),
+  //   url: `${INTERNAL_LINKS.multiply}/${tokenGroup}`,
+  // }
   const earn = {
     title: t('nav.earn'),
     description: (
@@ -86,7 +86,7 @@ export const getNavTokensNestedListItem = (
   return {
     items: [
       ...(Object.keys(productHubOptionsMap.borrow.tokens).includes(tokenGroup) ? [borrow] : []),
-      ...(Object.keys(productHubOptionsMap.multiply.tokens).includes(tokenGroup) ? [multiply] : []),
+      // ...(Object.keys(productHubOptionsMap.multiply.tokens).includes(tokenGroup) ? [multiply] : []),
       ...(Object.keys(productHubOptionsMap.earn.tokens).includes(tokenGroup) ? [earn] : []),
     ],
     // link: {

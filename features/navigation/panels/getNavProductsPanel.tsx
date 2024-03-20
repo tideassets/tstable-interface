@@ -39,100 +39,100 @@ export const getNavProductsPanel = ({
   isConnected: boolean
   connect: () => void
 }): NavigationMenuPanelType => {
-  const productEarnNavItems = getProductEarnNavItems(promoCardsData, productHubItems)
-  const productMultiplyNavItems = getProductMultiplyNavItems(promoCardsData, productHubItems)
+  // const productEarnNavItems = getProductEarnNavItems(promoCardsData, productHubItems)
+  // const productMultiplyNavItems = getProductMultiplyNavItems(promoCardsData, productHubItems)
   const productBorrowNavItems = getProductBorrowNavItems(productHubItems)
 
-  const widgetCallback = (variant: 'swap' | 'bridge') => {
-    !isConnected && connect()
-    uiChanges.publish<SwapWidgetChangeAction>(SWAP_WIDGET_CHANGE_SUBJECT, {
-      type: 'open',
-      variant,
-    })
-  }
+  // const widgetCallback = (variant: 'swap' | 'bridge') => {
+  //   !isConnected && connect()
+  //   uiChanges.publish<SwapWidgetChangeAction>(SWAP_WIDGET_CHANGE_SUBJECT, {
+  //     type: 'open',
+  //     variant,
+  //   })
+  // }
 
   return {
     label: t('nav.products'),
     lists: [
       {
         items: [
-          {
-            title: t('nav.earn'),
-            description: t('nav.products-earn'),
-            url: INTERNAL_LINKS.earn,
-            list: {
-              items: [
-                ...productEarnNavItems.map((item) => ({
-                  title: t(item.weeklyNetApy ? 'nav.earn-on-your' : 'nav.earn-on-your-simple', {
-                    token: item.reverseTokens ? item.primaryToken : item.secondaryToken,
-                    apy: formatDecimalAsPercent(item.weeklyNetApy || zero),
-                  }),
+          // {
+          //   title: t('nav.earn'),
+          //   description: t('nav.products-earn'),
+          //   url: INTERNAL_LINKS.earn,
+          //   list: {
+          //     items: [
+          //       ...productEarnNavItems.map((item) => ({
+          //         title: t(item.weeklyNetApy ? 'nav.earn-on-your' : 'nav.earn-on-your-simple', {
+          //           token: item.reverseTokens ? item.primaryToken : item.secondaryToken,
+          //           apy: formatDecimalAsPercent(item.weeklyNetApy || zero),
+          //         }),
 
-                  icon: getNavIconConfig({
-                    tokens:
-                      item.primaryToken === item.secondaryToken
-                        ? [item.primaryToken]
-                        : item.reverseTokens
-                        ? [item.secondaryToken, item.primaryToken]
-                        : [item.primaryToken, item.secondaryToken],
-                    position: 'global',
-                  }),
-                  description:
-                    item.earnStrategy === EarnStrategies.other
-                      ? t('nav.earn-on-other-strategy', {
-                          earnStrategyDescription: item.earnStrategyDescription,
-                          token: item.primaryToken,
-                        })
-                      : item.earnStrategy === EarnStrategies.yield_loop
-                      ? t('nav.earn-on-yield-loop-strategy', {
-                          token: item.primaryToken,
-                          protocol: item.protocol.toUpperCase(),
-                        })
-                      : t('nav.earn-on-liquidity-provision-strategy', {
-                          token: item.primaryToken,
-                          protocol: item.protocol.toUpperCase(),
-                        }),
-                  tags: [
-                    [
-                      lendingProtocolsByName[item.protocol].label,
-                      lendingProtocolsByName[item.protocol].gradient,
-                    ],
-                    [capitalize(item.network), networksByName[item.network].gradient],
-                  ] as NavigationMenuPanelListTags,
-                  url: item.url,
-                })),
-              ],
-            },
-          },
-          {
-            title: t('nav.multiply'),
-            description: t('nav.products-multiply'),
-            url: INTERNAL_LINKS.multiply,
-            list: {
-              items: [
-                ...productMultiplyNavItems.map((item) => ({
-                  title: t(item.maxMultiply ? 'nav.multiply-get-up-to' : 'nav.multiply-exposure', {
-                    maxMultiply: item.maxMultiply?.toFixed(2),
-                    collateralToken: item.collateralToken,
-                    debtToken: item.debtToken,
-                  }),
-                  icon: getNavIconConfig({
-                    tokens: [item.collateralToken, item.debtToken],
-                    position: 'global',
-                  }),
-                  description: t('nav.increase-your-exposure-against', { token: item.debtToken }),
-                  tags: [
-                    [
-                      lendingProtocolsByName[item.protocol].label,
-                      lendingProtocolsByName[item.protocol].gradient,
-                    ],
-                    [capitalize(item.network), networksByName[item.network].gradient],
-                  ] as NavigationMenuPanelListTags,
-                  url: item.url,
-                })),
-              ],
-            },
-          },
+          //         icon: getNavIconConfig({
+          //           tokens:
+          //             item.primaryToken === item.secondaryToken
+          //               ? [item.primaryToken]
+          //               : item.reverseTokens
+          //               ? [item.secondaryToken, item.primaryToken]
+          //               : [item.primaryToken, item.secondaryToken],
+          //           position: 'global',
+          //         }),
+          //         description:
+          //           item.earnStrategy === EarnStrategies.other
+          //             ? t('nav.earn-on-other-strategy', {
+          //                 earnStrategyDescription: item.earnStrategyDescription,
+          //                 token: item.primaryToken,
+          //               })
+          //             : item.earnStrategy === EarnStrategies.yield_loop
+          //             ? t('nav.earn-on-yield-loop-strategy', {
+          //                 token: item.primaryToken,
+          //                 protocol: item.protocol.toUpperCase(),
+          //               })
+          //             : t('nav.earn-on-liquidity-provision-strategy', {
+          //                 token: item.primaryToken,
+          //                 protocol: item.protocol.toUpperCase(),
+          //               }),
+          //         tags: [
+          //           [
+          //             lendingProtocolsByName[item.protocol].label,
+          //             lendingProtocolsByName[item.protocol].gradient,
+          //           ],
+          //           [capitalize(item.network), networksByName[item.network].gradient],
+          //         ] as NavigationMenuPanelListTags,
+          //         url: item.url,
+          //       })),
+          //     ],
+          //   },
+          // },
+          // {
+          //   title: t('nav.multiply'),
+          //   description: t('nav.products-multiply'),
+          //   url: INTERNAL_LINKS.multiply,
+          //   list: {
+          //     items: [
+          //       ...productMultiplyNavItems.map((item) => ({
+          //         title: t(item.maxMultiply ? 'nav.multiply-get-up-to' : 'nav.multiply-exposure', {
+          //           maxMultiply: item.maxMultiply?.toFixed(2),
+          //           collateralToken: item.collateralToken,
+          //           debtToken: item.debtToken,
+          //         }),
+          //         icon: getNavIconConfig({
+          //           tokens: [item.collateralToken, item.debtToken],
+          //           position: 'global',
+          //         }),
+          //         description: t('nav.increase-your-exposure-against', { token: item.debtToken }),
+          //         tags: [
+          //           [
+          //             lendingProtocolsByName[item.protocol].label,
+          //             lendingProtocolsByName[item.protocol].gradient,
+          //           ],
+          //           [capitalize(item.network), networksByName[item.network].gradient],
+          //         ] as NavigationMenuPanelListTags,
+          //         url: item.url,
+          //       })),
+          //     ],
+          //   },
+          // },
           {
             title: t('nav.borrow'),
             description: t('nav.products-borrow'),
@@ -215,32 +215,32 @@ export const getNavProductsPanel = ({
               ],
             },
           },
-          {
-            title: t('nav.swap-and-bridge'),
-            description: t('nav.products-swap-and-bridge'),
-            list: {
-              items: [
-                {
-                  title: t('nav.swap'),
-                  icon: {
-                    position: 'global',
-                    icon: exchange,
-                  },
-                  description: t('nav.swap-description'),
-                  callback: () => widgetCallback('swap'),
-                },
-                {
-                  title: t('nav.bridge'),
-                  icon: {
-                    position: 'global',
-                    icon: bridge,
-                  },
-                  description: <NavigationBridgeDescription />,
-                  callback: () => widgetCallback('bridge'),
-                },
-              ],
-            },
-          },
+          // {
+          //   title: t('nav.swap-and-bridge'),
+          //   description: t('nav.products-swap-and-bridge'),
+          //   list: {
+          //     items: [
+          //       {
+          //         title: t('nav.swap'),
+          //         icon: {
+          //           position: 'global',
+          //           icon: exchange,
+          //         },
+          //         description: t('nav.swap-description'),
+          //         callback: () => widgetCallback('swap'),
+          //       },
+          //       {
+          //         title: t('nav.bridge'),
+          //         icon: {
+          //           position: 'global',
+          //           icon: bridge,
+          //         },
+          //         description: <NavigationBridgeDescription />,
+          //         callback: () => widgetCallback('bridge'),
+          //       },
+          //     ],
+          //   },
+          // },
         ],
       },
     ],

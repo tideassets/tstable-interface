@@ -193,14 +193,14 @@ export function GenericMultiselect({
         const selected = options.filter((item) => item.value === values[0])[0]
         return (
           <>
-            {(selected.icon || selected.image) && (
+            {(selected?.icon || selected?.image) && (
               <GenericMultiselectIcon
                 label={selected.label}
                 icon={selected.icon}
                 image={selected.image}
               />
             )}
-            {selected.label}
+            {selected?.label}
           </>
         )
       default:

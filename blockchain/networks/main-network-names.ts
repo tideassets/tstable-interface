@@ -6,12 +6,12 @@ export enum MainNetworkNames {
   ethereumGoerli = NetworkNames.ethereumMainnet,
 
   arbitrumMainnet = NetworkNames.arbitrumMainnet,
-  arbitrumGoerli = NetworkNames.arbitrumMainnet,
   arbitrumSepolia = NetworkNames.arbitrumMainnet,
+  // arbitrumGoerli = NetworkNames.arbitrumMainnet,
 
-  polygonMainnet = NetworkNames.polygonMainnet,
-  polygonMumbai = NetworkNames.polygonMainnet,
+  // polygonMainnet = NetworkNames.polygonMainnet,
+  // polygonMumbai = NetworkNames.polygonMainnet,
 
-  optimismMainnet = NetworkNames.optimismMainnet,
-  optimismGoerli = NetworkNames.optimismMainnet,
+  // optimismMainnet = NetworkNames.optimismMainnet,
+  // optimismGoerli = NetworkNames.optimismMainnet,
 }
